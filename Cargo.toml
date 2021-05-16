@@ -1,6 +1,6 @@
 [package]
 name = "macchina"
-version = "0.7.4"
+version = "0.7.5"
 authors = ["Taha Aziz Ben Ali <ba.tahaaziz@gmail.com>", "Marvin Haschker <marvin@haschker.me>"]
 edition = "2018"
 description = "A system information fetcher, with an emphasis on performance and minimalism."
@@ -11,7 +11,7 @@ readme = "README_CARGO.md"
 build = "build.rs"
 
 [dependencies]
-libmacchina = "0.3.3"
+libmacchina = "0.3.5"
 bytesize = "1.0.1"
 clap = "2.33.3"
 tui = { version = "0.14.0", default-features = false, features = ['crossterm'] }
@@ -25,7 +25,7 @@ ansi-to-tui = "0.1.8"
 
 
 [build-dependencies]
-libmacchina = "0.3.3"
+libmacchina = "0.3.5"
 bytesize = "1.0.1"
 clap = "2.33.3"
 tui = { version = "0.14.0", default-features = false }

@@ -308,17 +308,20 @@ pub fn get_all_readouts<'a>(
 
         let percentage = battery_readout.percentage();
         let state = battery_readout.status();
+        let health = battery_readout.health();
 
-        match (percentage, state) {
-            (Ok(p), Ok(s)) => {
+        match (percentage, state, health) {
+            (Ok(p), Ok(s), Ok(h)) => {
                 if opt.bar {
                     let bar = create_bar(theme, crate::bars::num_to_blocks(p));
                     readout_values.push(Readout::new(key, bar));
                 } else {
-                    readout_values.push(Readout::new(key, format_bat(p, s)));
+                    readout_values.push(Readout::new(key, format_bat(p, s, h)));
                 }
             }
-            (Err(e), _) | (_, Err(e)) => readout_values.push(Readout::new_err(key, e)),
+            (Err(e), _, _) | (_, Err(e), _) | (_, _, Err(e)) => {
+                readout_values.push(Readout::new_err(key, e))
+            }
         }
     }
 

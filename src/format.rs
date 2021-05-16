@@ -79,12 +79,17 @@ pub fn host(username: &str, hostname: &str) -> String {
 
 /// This function should return a new `String` constructed from the values \
 /// returned by `traits::BatteryReadout::percentage()` and `traits::BatteryReadout::status()`
-pub fn battery(percentage: u8, state: BatteryState) -> String {
+pub fn battery(percentage: u8, state: BatteryState, health: u64) -> String {
     // Holds either "Charging" or "Discharging" values
     if percentage != 100 {
-        format!("{}% & {}", percentage, Into::<&'static str>::into(state))
+        format!(
+            "{}% & {} — {}% Health",
+            percentage,
+            Into::<&'static str>::into(state),
+            health
+        )
     } else {
-        String::from("Full")
+        format!("Full — {}% Health", health)
     }
 }
 
