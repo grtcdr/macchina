@@ -21,16 +21,18 @@ arg_enum! {
         OperatingSystem,
         DesktopEnvironment,
         WindowManager,
-        Resolution,
         Packages,
         Shell,
         Terminal,
+        LocalIP,
+        Backlight,
+        Resolution,
         Uptime,
         Processor,
         ProcessorUsage,
         Memory,
         Battery,
-        LocalIP,
+
     }
 }
 
@@ -219,6 +221,13 @@ pub fn get_all_readouts<'a>(
         match general_readout.resolution() {
             Ok(r) => readout_values.push(Readout::new(ReadoutKey::Resolution, r)),
             Err(e) => readout_values.push(Readout::new_err(ReadoutKey::Resolution, e)),
+        }
+    }
+
+    if should_display.contains(&ReadoutKey::Backlight) {
+        match general_readout.backlight() {
+            Ok(b) => readout_values.push(Readout::new(ReadoutKey::Backlight, format!("{}%", b))),
+            Err(e) => readout_values.push(Readout::new_err(ReadoutKey::Backlight, e)),
         }
     }
 

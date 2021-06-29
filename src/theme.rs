@@ -92,6 +92,11 @@ impl ReadoutKey {
                 values.insert(&AbbreviationType::Alternative, "Adr");
                 values.insert(&AbbreviationType::Long, "Local IP");
             }
+            ReadoutKey::Backlight => {
+                values.insert(&AbbreviationType::Classic, "Brightness");
+                values.insert(&AbbreviationType::Alternative, "Bri");
+                values.insert(&AbbreviationType::Long, "Brightness");
+            }
             ReadoutKey::Resolution => {
                 values.insert(&AbbreviationType::Classic, "Resolution");
                 values.insert(&AbbreviationType::Alternative, "Res");
